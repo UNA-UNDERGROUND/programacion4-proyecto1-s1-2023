@@ -1,13 +1,12 @@
 package net.rnvn;
 
-import java.util.List;
-import java.util.Map;
+import net.rnvn.controller.CredencialesController;
+import net.rnvn.model.Credenciales;
 
 public class Backend {
     public static void main(String[] args) {
-        System.out.println(Map.of(
-                "Hello", 1,
-                "World", 2,
-                "ABC", List.of("A", "B", "C")));
+        Credenciales credenciales = new Credenciales("123", "123");
+        boolean res = CredencialesController.getInstance().login(credenciales);
+        System.out.println(res);
     }
 }
