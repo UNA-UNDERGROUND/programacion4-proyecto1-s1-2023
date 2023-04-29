@@ -89,7 +89,7 @@ public class CredencialesDAO extends PolizasDAO {
                     new String[] { "identificacion", "password" });
 
     private static final String SQL_GET_CREDENCIALES //
-            = QueryGen.genSelecString(
+            = QueryGen.genSelectString(
                     TABLE_NAME,
                     new String[] { "identificacion", "password" },
                     new String[] { "identificacion = ?" });
