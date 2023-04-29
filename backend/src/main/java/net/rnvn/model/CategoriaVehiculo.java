@@ -2,24 +2,24 @@ package net.rnvn.model;
 
 public class CategoriaVehiculo {
 
-    private int categoria_vehiculo;
+    private Integer idCategoriaVehiculo;
     private String marca;
     private String modelo;
     private int serie;
-    
-    public CategoriaVehiculo(int categoria_vehiculo, String marca, String modelo, int serie) {
-        this.categoria_vehiculo = categoria_vehiculo;
+
+    public CategoriaVehiculo(Integer idCategoriaVehiculo, String marca, String modelo, int serie) {
+        this.idCategoriaVehiculo = idCategoriaVehiculo;
         this.marca = marca;
         this.modelo = modelo;
         this.serie = serie;
     }
 
-    public int getCategoria_vehiculo() {
-        return categoria_vehiculo;
+    public Integer getIdCategoriaVehiculo() {
+        return idCategoriaVehiculo;
     }
 
-    public void setCategoria_vehiculo(int categoria_vehiculo) {
-        this.categoria_vehiculo = categoria_vehiculo;
+    public void setIdCategoriaVehiculo(Integer idCategoriaVehiculo) {
+        this.idCategoriaVehiculo = idCategoriaVehiculo;
     }
 
     public String getMarca() {
