@@ -24,7 +24,7 @@ public class QueryGen {
         return query;
     }
 
-    public static String genSelecString(String table, String[] columns, String[] conditions) {
+    public static String genSelectString(String table, String[] columns, String[] conditions) {
         String query = "select ";
         for (int i = 0; i < columns.length; i++) {
             query += columns[i];
