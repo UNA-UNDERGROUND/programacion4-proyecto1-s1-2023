@@ -1,22 +1,22 @@
 package net.rnvn.model;
 
 public class CategoriaCobertura {
-    private int id_categoria;
+    private int idCategoria;
     private String nombre;
     private String descripcion;
-    
-    public CategoriaCobertura(int id_categoria, String nombre, String descripcion) {
-        this.id_categoria = id_categoria;
+
+    public CategoriaCobertura(int idCategoria, String nombre, String descripcion) {
+        this.idCategoria = idCategoria;
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
 
-    public int getId_categoria() {
-        return id_categoria;
+    public int getIdCategoria() {
+        return idCategoria;
     }
 
-    public void setId_categoria(int id_categoria) {
-        this.id_categoria = id_categoria;
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
     public String getNombre() {
