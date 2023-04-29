@@ -3,7 +3,7 @@ package net.rnvn;
 import java.util.List;
 import java.util.Map;
 
-public class MyClass {
+public class Backend {
     public static void main(String[] args) {
         System.out.println(Map.of(
                 "Hello", 1,
