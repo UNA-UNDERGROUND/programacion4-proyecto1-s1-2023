@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -14,13 +15,12 @@ public class GestorLogout extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
         // check that there is a session open
-        // if there is, close it
-        // redirect to index.jsp
-        if (request.getSession().getAttribute("credenciales") != null) {
-            request.getSession().removeAttribute("credenciales");
+        HttpSession session = request.getSession();
+        if (session.getAttribute("credenciales") == null) {
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
+        } else {
+            session.invalidate();
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
         }
-        // explicitly invalidate the session
-        request.getSession().invalidate();
-        response.sendRedirect(request.getContextPath() + "/index.jsp");
     }
 }
