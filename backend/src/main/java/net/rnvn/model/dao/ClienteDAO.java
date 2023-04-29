@@ -46,9 +46,6 @@ public class ClienteDAO extends PolizasDAO {
 					String correo = rs.getString("correo");
 					cliente = new Cliente(identificacion, nombre, apellidos, telefono, correo);
 				}
-			} catch (Exception e) {
-				String className = this.getClass().getName();
-				System.err.println("[" + className + "] Error al obtener cliente: " + e.getMessage());
 			}
 		} catch (Exception e) {
 			String className = this.getClass().getName();

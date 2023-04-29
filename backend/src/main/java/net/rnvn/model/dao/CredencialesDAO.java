@@ -39,9 +39,6 @@ public class CredencialesDAO extends PolizasDAO {
                     String password = rs.getString("password");
                     credenciales = new Credenciales(identificacion, password);
                 }
-            } catch (Exception e) {
-                String className = this.getClass().getName();
-                System.err.println("[" + className + "] Error al obtener credenciales: " + e.getMessage());
             }
         } catch (Exception e) {
             String className = this.getClass().getName();
