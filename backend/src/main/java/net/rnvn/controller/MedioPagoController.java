@@ -1,5 +1,7 @@
 package net.rnvn.controller;
 
+import java.util.List;
+
 import net.rnvn.model.MedioPago;
 import net.rnvn.model.dao.MedioPagoDAO;
 
@@ -11,6 +13,10 @@ public class MedioPagoController {
 
     public MedioPago getMedioPago(int idMedioPago) {
         return medioPagoDAO.getMedioPago(idMedioPago);
+    }
+
+    public List<MedioPago> getMediosPago(String idCliente) {
+        return medioPagoDAO.getListadoMedioPagoCliente(idCliente);
     }
 
     public boolean actualizarMedioPago(MedioPago medioPago) {
