@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-md-4 offset-md-4">
                 <h2>Iniciar sesi&oacute;n</h2>
-                <form  class="form-floating" style="margin: 10px 0px 10px 0px;">
+                <form  class="form-floating" style="margin: 10px 0px 10px 0px;" action="/frontend/login">
                     <div class="form-floating mb-3">
                         <input type="cedula" class="form-control" id="floatingInputInvalid" placeholder="401230456" required>
                         <label for="floatingInputInvalid">C&eacute;dula</label>

@@ -93,7 +93,7 @@ public class ClienteDAO extends PolizasDAO {
 	private static final String SQL_ADD_CLIENTE //
 			= QueryGen.genInsertInto(
 					TABLE_NAME,
-					new String[] { "identificacion", "nombre", "apellido", "telefono", "correo" });
+					new String[] { "identificacion", "nombre", "apellidos", "telefono", "correo" });
 	private static final String SQL_GET_CLIENTE //
 			= QueryGen.genSelectString(
 					TABLE_NAME,
