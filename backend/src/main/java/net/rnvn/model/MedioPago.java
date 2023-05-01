@@ -4,13 +4,13 @@ import java.time.LocalDateTime;
 
 public class MedioPago {
     private int id;
-    private Integer idCliente;
+    private String idCliente;
     private int numeroTarjeta;
     private String nombreTitular;
     private LocalDateTime fechaVencimiento;
     private String cvv;
 
-    public MedioPago(int id, Integer idCliente, int numeroTarjeta, String nombreTitular, LocalDateTime fechaVencimiento,
+    public MedioPago(int id, String idCliente, int numeroTarjeta, String nombreTitular, LocalDateTime fechaVencimiento,
             String cvv) {
         this.id = id;
         this.idCliente = idCliente;
@@ -28,11 +28,11 @@ public class MedioPago {
         this.id = id;
     }
 
-    public Integer getIdCliente() {
+    public String getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Integer idCliente) {
+    public void setIdCliente(String idCliente) {
         this.idCliente = idCliente;
     }
 
