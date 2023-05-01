@@ -1,6 +1,8 @@
 package net.rnvn.controller;
 
+import net.rnvn.model.Cliente;
 import net.rnvn.model.Credenciales;
+import net.rnvn.model.dao.ClienteDAO;
 import net.rnvn.model.dao.CredencialesDAO;
 
 public class CredencialesController {
@@ -12,8 +14,12 @@ public class CredencialesController {
 
     // register
 
-    public boolean register(Credenciales credenciales) {
+    public boolean registerCredentials(Credenciales credenciales) {
         return credencialesDAO.agregarCredenciales(credenciales);
+    }
+
+    public boolean registerUser(Cliente cliente, Credenciales credenciales) {
+        return clienteDAO.registrarUsuario(cliente, credenciales.getPassword());
     }
 
     // update
@@ -31,6 +37,7 @@ public class CredencialesController {
     // DAO
 
     CredencialesDAO credencialesDAO = new CredencialesDAO();
+    ClienteDAO clienteDAO = new ClienteDAO();
 
     // Singleton
     private CredencialesController() {

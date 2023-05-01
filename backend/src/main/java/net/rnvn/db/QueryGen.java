@@ -70,4 +70,16 @@ public class QueryGen {
         }
         return query;
     }
+
+    public static String genCallStoredProcedure(String procedureName, String[] parameters) {
+        String query = "{ call " + procedureName + " (";
+        for (int i = 0; i < parameters.length; i++) {
+            query += "?";
+            if (i < parameters.length - 1) {
+                query += ", ";
+            }
+        }
+        query += ") }";
+        return query;
+    }
 }
