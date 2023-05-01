@@ -36,20 +36,20 @@ public class MedioPagoDAO extends PolizasDAO{
         return result;
     }
 
-    public MedioPago getMedioPago(String idCliente){
+    public MedioPago getMedioPago(int idMedioPago){
         MedioPago pago = null;
         try (Connection conn = getConnection();
             PreparedStatement stmt = conn.prepareStatement(SQL_GET_MEDIO_PAGO)) {
             stmt.clearParameters();
-            stmt.setString(2, idCliente);
+            stmt.setInt(1, idMedioPago);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()){
-                    int id = rs.getInt("id");
+                    String id = rs.getString("id_cliente");
                     int numeroTarjeta = rs.getInt("numero_tarjeta");
                     String nombreTitular = rs.getString("nombre_titular");
                     LocalDateTime fechaVencimiento = rs.getTimestamp("fecha_vencimiento").toLocalDateTime();
                     String cvv = rs.getString("cvv");
-                    pago = new MedioPago(id, idCliente, numeroTarjeta, nombreTitular, fechaVencimiento, cvv);
+                    pago = new MedioPago(idMedioPago, id, numeroTarjeta, nombreTitular, fechaVencimiento, cvv);
                 }
             }
         } catch (Exception e) {
@@ -80,13 +80,13 @@ public class MedioPagoDAO extends PolizasDAO{
         return result;
     }
 
-    public boolean eliminarMedioPago(String idCliente) {
+    public boolean eliminarMedioPago(int id) {
         boolean result = false;
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(SQL_DELETE_MEDIO_PAGO)) {
 
             stmt.clearParameters();
-            stmt.setString(2, idCliente);
+            stmt.setInt(1, id);
             result = stmt.executeUpdate() > 0;
         } catch (Exception e) {
             String className = this.getClass().getName();
@@ -106,15 +106,15 @@ public class MedioPagoDAO extends PolizasDAO{
     private static final String SQL_GET_MEDIO_PAGO
         = QueryGen.genSelectString(
             TABLE_NAME,
-            new String[] {"id", "numero_tarjeta", "nombre_titular", "fecha_vencimiento", "cvv"},
-            new String[] {"id_cliente = ?"});
+            new String[] {"id_cliente", "numero_tarjeta", "nombre_titular", "fecha_vencimiento", "cvv"},
+            new String[] {"id = ?"});
     private static final String SQL_UPDATE_MEDIO_PAGO
         = QueryGen.genUpdateString(
             TABLE_NAME,
-            new String[] {"id", "numero_tarjeta", "nombre_titular", "fecha_vencimiento", "cvv"},
-            new String[] {"id_cliente = ?"});
+            new String[] {"id_cliente", "numero_tarjeta", "nombre_titular", "fecha_vencimiento", "cvv"},
+            new String[] {"id = ?"});
     private static final String SQL_DELETE_MEDIO_PAGO
         = QueryGen.genDeleteString(
             TABLE_NAME,
-            new String[] {"id_cliente = ?"});
+            new String[] {"id = ?"});
 }
