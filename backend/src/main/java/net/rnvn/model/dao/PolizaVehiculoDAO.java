@@ -35,11 +35,11 @@ public class PolizaVehiculoDAO extends PolizasDAO{
         return result;
     }
 
-    public PolizaVehiculo getPolizaVehiculo(String idPoliza){
+    public PolizaVehiculo getPolizaVehiculo(int idPoliza){
         PolizaVehiculo poliza = null;
         try (Connection conn = getConnection();
         PreparedStatement stmt = conn.prepareStatement(SQL_GET_POLIZA_VEHICULO)){
-            stmt.setString(2, idPoliza);
+            stmt.setInt(2, idPoliza);
             try(ResultSet rs = stmt.executeQuery()){
                 String idCliente = rs.getString("id_cliente");
                 String placaVehiculo = rs.getString("placa_vehiculo");
@@ -74,12 +74,12 @@ public class PolizaVehiculoDAO extends PolizasDAO{
 			System.err.println("[" + className + "] Error al actualizar poliza de vehiculo: " + e.getMessage());
         }
 
-    public boolean eliminarPolizaVehiculo(String idPoliza){
+    public boolean eliminarPolizaVehiculo(int idPoliza){
         boolean result = false;
         try (Connection conn = getConnection();
             PreparedStatement stmt = conn.prepareStatement(SQL_DELETE_POLIZA_VEHICULO)){
             stmt.clearParameters();
-            stmt.setString(2, idPoliza);
+            stmt.setInt(2, idPoliza);
             result = stmt.executeUpdate() > 0;
         } catch (Exception e) {
             String className = this.getClass().getName();
