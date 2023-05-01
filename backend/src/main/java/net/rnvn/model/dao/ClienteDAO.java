@@ -1,8 +1,10 @@
 package net.rnvn.model.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 
 import net.rnvn.db.PolizasDAO;
 import net.rnvn.db.QueryGen;
@@ -86,6 +88,28 @@ public class ClienteDAO extends PolizasDAO {
 		return result;
 	}
 
+	public boolean registrarUsuario(Cliente cliente, String password) {
+		boolean result = false;
+		try (Connection conn = getConnection();
+				CallableStatement cstmt = conn.prepareCall(SQL_SP_REGISTRAR_USUARIO)) {
+			cstmt.clearParameters();
+			cstmt.setString(1, cliente.getIdentificacion());
+			cstmt.setString(2, password);
+			cstmt.setString(3, cliente.getNombre());
+			cstmt.setString(4, cliente.getApellidos());
+			cstmt.setString(5, cliente.getTelefono());
+			cstmt.setString(6, cliente.getCorreo());
+			ResultSet rs = cstmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getBoolean("success");
+			}
+		} catch (Exception e) {
+			String className = this.getClass().getName();
+			System.err.println("[" + className + "] Error al registrar usuario: " + e.getMessage());
+		}
+		return result;
+	}
+
 	// consultas SQL
 
 	private static final String TABLE_NAME = "clientes";
@@ -108,4 +132,9 @@ public class ClienteDAO extends PolizasDAO {
 			= QueryGen.genDeleteString(
 					TABLE_NAME,
 					new String[] { "identificacion = ?" });
+	private static final String SQL_SP_REGISTRAR_USUARIO //
+			= QueryGen.genCallStoredProcedure(
+					"sp_registrar_usuario",
+					new String[] { "identificacion", "password", "nombre", "apellido", "telefono", "correo" });
+
 }
