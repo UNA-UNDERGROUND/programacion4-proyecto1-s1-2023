@@ -1,6 +1,5 @@
 package net.rnvn.model.dao;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,7 +8,7 @@ import net.rnvn.db.PolizasDAO;
 import net.rnvn.db.QueryGen;
 import net.rnvn.model.CategoriaVehiculo;
 
-public class CategoriaVehiculoDAO extends PolizasDAO{
+public class CategoriaVehiculoDAO extends PolizasDAO {
     public CategoriaVehiculoDAO() {
         super();
     }
@@ -88,22 +87,18 @@ public class CategoriaVehiculoDAO extends PolizasDAO{
 
     private static final String TABLE_NAME = "categoria_vehiculo";
 
-    private static final String SQL_ADD_CATEGORIA_VEHICULO_STRING
-        = QueryGen.genInsertInto(
+    private static final String SQL_ADD_CATEGORIA_VEHICULO_STRING = QueryGen.genInsertInto(
             TABLE_NAME,
-            new String[] {"id_categoria_vehiculo", "marca", "modelo", "serie"});
-    private static final String SQL_GET_CATEGORIA_VEHICULO
-        = QueryGen.genSelectString(
+            new String[] { "id_categoria_vehiculo", "marca", "modelo", "serie" });
+    private static final String SQL_GET_CATEGORIA_VEHICULO = QueryGen.genSelectString(
             TABLE_NAME,
-            new String[] {"marca", "modelo", "serie"},
-            new String[] {"id_categoria_vehiculo = ?"});
-    private static final String SQL_UPDATE_CATEGORIA_VEHICULO
-        = QueryGen.genUpdateString(
+            new String[] { "marca", "modelo", "serie" },
+            new String[] { "id_categoria_vehiculo = ?" });
+    private static final String SQL_UPDATE_CATEGORIA_VEHICULO = QueryGen.genUpdateString(
             TABLE_NAME,
-            new String[] {"marca", "modelo", "serie"},
-            new String[] {"id_categoria_vehiculo = ?"});
-    private static final String SQL_DELETE_CATEGORIA_VEHICULO
-        = QueryGen.genDeleteString(
+            new String[] { "marca", "modelo", "serie" },
+            new String[] { "id_categoria_vehiculo = ?" });
+    private static final String SQL_DELETE_CATEGORIA_VEHICULO = QueryGen.genDeleteString(
             TABLE_NAME,
-            new String[] {"id_categoria_vehiculo = ?"});
+            new String[] { "id_categoria_vehiculo = ?" });
 }

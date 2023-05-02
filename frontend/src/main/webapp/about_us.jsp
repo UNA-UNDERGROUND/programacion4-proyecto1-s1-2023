@@ -23,8 +23,8 @@
 
 
 <!-- Encabezado superior -->
+<header><%@include file="header.jsp"%></header>
 
-<header><%@ include file="header.jsp" %></header>
 <body>
 <div class="container">
   <h1>Bienvenido a AutoSeguro</h1>
@@ -41,8 +41,6 @@
     La plataforma de AutoSeguro se ha diseñado pensando en la comodidad y facilidad de uso para sus clientes y administradores, permitiendo así un acceso rápido y eficiente a la información relevante sobre seguros de automóviles. Con AutoSeguro, los clientes pueden encontrar y comprar el seguro adecuado para sus vehículos en línea, y el administrador puede mantener y actualizar fácilmente la base de datos de marcas, modelos y coberturas disponibles.
   </p>
 </div>
-
-
-
 </body>
+<footer><%@include file="footer.jsp"%></footer>
 </html>

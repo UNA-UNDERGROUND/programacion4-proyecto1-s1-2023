@@ -22,7 +22,6 @@
       </div>
       <div class="col-md-3">
         <div class="mr-auto">
-          <%--                    <a href="about-us.jsp" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">conozcanos</a>--%>
           <a class="btn btn-primary" href="about_us.jsp" role="button">Conzocanos</a>
         </div>
       </div>

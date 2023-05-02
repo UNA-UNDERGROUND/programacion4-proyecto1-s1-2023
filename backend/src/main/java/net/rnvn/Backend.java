@@ -4,7 +4,6 @@ import net.rnvn.controller.CredencialesController;
 import net.rnvn.model.Credenciales;
 
 import net.rnvn.controller.ClienteController;
-import net.rnvn.model.Cliente;
 
 public class Backend {
     public static void main(String[] args) {

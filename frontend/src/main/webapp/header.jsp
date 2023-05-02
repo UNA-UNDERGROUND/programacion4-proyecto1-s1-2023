@@ -22,13 +22,8 @@
                 <span style="font-size: 18px;">Ll&aacute;manos: +506 5467 0937</span>
             </div>
             <div class="col-md-3 d-flex">
-<%--                <div class="mr-auto">--%>
-<%--                    <a href="inicio.jsp" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">logout</a>--%>
-<%--                    <a href="about_us.jsp" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">conozcanos</a>--%>
-<%--                </div>--%>
-
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <a href="inicio.jsp" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">logout</a>
+                    <a href="index.jsp" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Inicio</a>
                     <a href="about_us.jsp" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">conozcanos</a>
                 </div>
             </div>

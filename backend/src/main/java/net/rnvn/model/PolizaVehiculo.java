@@ -5,7 +5,31 @@ import java.time.LocalDateTime;
 
 public class PolizaVehiculo {
     public enum PlazoPago {
-        TRIMESTRAL, SEMESTRAL, ANUAL
+        TRIMESTRAL, SEMESTRAL, ANUAL;
+
+        public String getCode() {
+            switch (this) {
+                case TRIMESTRAL:
+                    return "T";
+                case SEMESTRAL:
+                    return "S";
+                case ANUAL:
+                    return "A";
+            }
+            return null;
+        }
+
+        public static PlazoPago fromString(String code) {
+            switch (code) {
+                case "T":
+                    return TRIMESTRAL;
+                case "S":
+                    return SEMESTRAL;
+                case "A":
+                    return ANUAL;
+            }
+            return null;
+        }
     }
 
     private String idCliente;
