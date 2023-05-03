@@ -27,9 +27,12 @@ public class GestorLogin extends HttpServlet {
             if (cliente != null) {
                 request.getSession().setAttribute("credenciales", credenciales);
                 request.getSession().setAttribute("cliente", cliente);
+                response.sendRedirect(request.getContextPath() + "/principalClient.jsp");
             }
         }
-        response.sendRedirect(request.getContextPath() + "/index.jsp");
+        else{
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
+        }
     }
 
     // verifica que se puedan crear credenciales con los parametros y las retorna
