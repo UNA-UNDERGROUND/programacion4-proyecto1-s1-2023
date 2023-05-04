@@ -4,4 +4,22 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+        <servlet-name>GestorLogin</servlet-name>
+        <servlet-class>net.rnvn.frontend.credenciales.GestorLogin</servlet-class>
+</servlet>
+<servlet-mapping>
+        <servlet-name>GestorLogin</servlet-name>
+        <url-pattern>/GestorLogin</url-pattern>
+        <url-pattern>/login</url-pattern>
+</servlet-mapping>
+
+
+<session-config>
+    <session-timeout>
+        30
+    </session-timeout>
+</session-config>
+
 </web-app>
+

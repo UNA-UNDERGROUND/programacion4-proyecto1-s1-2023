@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" class="h-100">
 
-<%@include file="../java/GestorLogin"%>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,7 +32,7 @@
         <div class="row">
             <div class="col-md-4 offset-md-4">
                 <h2>Iniciar sesi&oacute;n</h2>
-                <form  class="form-floating" style="margin: 10px 0px 10px 0px;" action="/frontend/login" >
+                <form  class="form-floating" style="margin: 10px 0px 10px 0px;" method = "GET" action="login" >
                     <div class="form-floating mb-3">
                         <input type="cedula" class="form-control" id="floatingInputInvalid" name="username" placeholder="401230456" required>
                         <label for="floatingInputInvalid">C&eacute;dula</label>
@@ -52,9 +50,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <% if ((request.getAttribute("username") != null)&& (request.getAttribute("password"))) { %>
-                    <%    GestorLogin.getInstance().login(request.getAttribute("username"), request.getAttribute("password")); %> 
-                    <% } %> -->
+
                 </form>
                 <div class="container-fluid">
                     <p> &#191;No tienes una cuenta? <a href="register.jsp">Reg&iacute;strate aqu&iacute;</a></p>

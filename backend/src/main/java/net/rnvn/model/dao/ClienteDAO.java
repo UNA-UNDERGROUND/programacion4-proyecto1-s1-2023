@@ -42,7 +42,7 @@ public class ClienteDAO extends PolizasDAO {
 			try (ResultSet rs = stmt.executeQuery()) {
 				if (rs.next()) {
 					String nombre = rs.getString("nombre");
-					String apellidos = rs.getString("apellido");
+					String apellidos = rs.getString("apellidos");
 					String telefono = rs.getString("telefono");
 					String correo = rs.getString("correo");
 					cliente = new Cliente(identificacion, nombre, apellidos, telefono, correo);
@@ -120,12 +120,12 @@ public class ClienteDAO extends PolizasDAO {
 	private static final String SQL_GET_CLIENTE //
 			= QueryGen.genSelectString(
 					TABLE_NAME,
-					new String[] { "nombre", "apellido", "telefono", "correo" },
+					new String[] { "nombre", "apellidos", "telefono", "correo" },
 					new String[] { "identificacion = ?" });
 	private static final String SQL_UPDATE_CLIENTE //
 			= QueryGen.genUpdateString(
 					TABLE_NAME,
-					new String[] { "nombre", "apellido", "telefono", "correo" },
+					new String[] { "nombre", "apellidos", "telefono", "correo" },
 					new String[] { "identificacion = ?" });
 	private static final String SQL_DELETE_CLIENTE //
 			= QueryGen.genDeleteString(

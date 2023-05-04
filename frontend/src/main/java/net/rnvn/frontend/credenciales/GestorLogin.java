@@ -1,10 +1,10 @@
 package net.rnvn.frontend.credenciales;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import net.rnvn.controller.ClienteController;
 import net.rnvn.controller.CredencialesController;
@@ -14,7 +14,7 @@ import net.rnvn.model.Credenciales;
 import java.io.IOException;
 import java.util.Map;
 
-@WebServlet(name = "GestorLogin", urlPatterns = { "/login" })
+@WebServlet(name = "GestorLogin", urlPatterns = { "/GestorLogin", "login" })
 public class GestorLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request,
             HttpServletResponse response)
@@ -39,7 +39,7 @@ public class GestorLogin extends HttpServlet {
     private Credenciales validarCredenciales(HttpServletRequest request) {
         // verificamos que sea POST
         Credenciales credenciales = null;
-        if (request.getMethod().equals("POST")) {
+        if (request.getMethod().equals("GET")) {
             Map<String, String[]> parametros = request.getParameterMap();
             if (parametros.containsKey("username") && parametros.containsKey("password")) {
                 String username = request.getParameter("username");
@@ -48,5 +48,11 @@ public class GestorLogin extends HttpServlet {
             }
         }
         return credenciales;
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        processRequest(req, resp);
     }
 }
