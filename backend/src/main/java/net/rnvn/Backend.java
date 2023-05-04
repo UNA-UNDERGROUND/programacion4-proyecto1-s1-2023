@@ -9,9 +9,9 @@ import net.rnvn.controller.ClienteController;
 public class Backend {
     public static void main(String[] args) {
         //usuario prueba
-        Credenciales test = new Credenciales("12345", "admin");
+        Credenciales test = new Credenciales("764", "admin2");
         CredencialesController.getInstance().registerCredentials(test);
-        Cliente user = new Cliente("12345", "Alex", "Ramirez", "85095225", "alexram999rc@gmail.com");
+        Cliente user = new Cliente("764", "Jose", "Lopez", "8238394", "alopez@gmail.com");
         boolean res = ClienteController.getInstance().agregarCliente(user);
 
         System.out.println(res);
