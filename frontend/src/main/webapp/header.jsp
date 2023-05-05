@@ -23,7 +23,7 @@
             </div>
             <div class="col-md-3 d-flex">
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <a href="index.jsp" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Inicio</a>
+                    <a href="index.jsp" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Salir</a>
                     <a href="about_us.jsp" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">conozcanos</a>
                 </div>
             </div>

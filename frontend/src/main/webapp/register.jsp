@@ -39,7 +39,8 @@
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registro</p>
                 <h5>Datos del nuevo usuario</h5>
-                <form action="../src/java/presentation/Usuario/RegistroServlet.java" method="post" class="form-floating" style="margin: 10px 0px 10px 0px;">
+
+                <form action="register" method="POST" class="form-floating" style="margin: 10px 0px 10px 0px;">
                   <input type="hidden" name="accion" value="Registrarse">
                   <div class="form-floating mb-3">
                     <input name="txtIdentificador" type="text" class="form-control" id="floatingId" placeholder="Identificaci&oacute;n" required>
@@ -91,7 +92,7 @@
                                                 <h6>Fecha de vencimiento</h6>
                                             </span>
                             </label>
-                            <div class="input-group"><input name="txtFecha" type="number" placeholder="MM" name="" class="form-control" required /> <input type="number" placeholder="AA" name="" class="form-control" required /></div>
+                            <div class="input-group"><input name="txtFecha" type="datetime-local" placeholder="MM" name="" class="form-control" required /> </div>
                           </div>
                         </div>
                         <div class="col-sm-4">

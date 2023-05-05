@@ -12,6 +12,7 @@ import net.rnvn.model.Cliente;
 import net.rnvn.model.Credenciales;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 
 @WebServlet(name = "GestorLogin", urlPatterns = { "/GestorLogin", "login" })
@@ -31,13 +32,18 @@ public class GestorLogin extends HttpServlet {
             }
         }
         else{
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            PrintWriter out = response.getWriter();
+            response.setContentType("text/html");
+            out.println("<script type='text/javascript'>");
+            out.println("alert('Usuario no existe');");
+            out.println("window.open('" + request.getContextPath() + "/index.jsp');");
+            out.println("</script>");
         }
     }
 
     // verifica que se puedan crear credenciales con los parametros y las retorna
     private Credenciales validarCredenciales(HttpServletRequest request) {
-        // verificamos que sea POST
+        // verificamos que sea GET
         Credenciales credenciales = null;
         if (request.getMethod().equals("GET")) {
             Map<String, String[]> parametros = request.getParameterMap();
