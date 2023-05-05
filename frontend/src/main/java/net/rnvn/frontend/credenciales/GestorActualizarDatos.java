@@ -25,7 +25,7 @@ public class GestorActualizarDatos extends HttpServlet {
             throws ServletException, IOException {
 
 
-         Credenciales credenciales = validarCredenciales(request);
+        Credenciales credenciales = validarCredenciales(request);
 
          Cliente cliente = actualizarCliente(request);
         
