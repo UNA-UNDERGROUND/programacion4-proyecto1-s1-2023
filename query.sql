@@ -20,7 +20,7 @@ create table medio_pago
 (
     id                int         not null, -- autoincrement
     id_cliente        varchar(20) not null,
-    numero_tarjeta    int         not null,
+    numero_tarjeta    varchar(20) not null,
     nombre_titular    varchar(50) not null,
     fecha_vencimiento date        not null,
     cvv               varchar(4)  not null

@@ -24,7 +24,7 @@ public class MedioPagoDAO extends PolizasDAO {
             stmt.clearParameters();
             stmt.setInt(1, medioPago.getId());
             stmt.setString(2, medioPago.getIdCliente());
-            stmt.setInt(3, medioPago.getNumeroTarjeta());
+            stmt.setString(3, medioPago.getNumeroTarjeta());
             stmt.setString(4, medioPago.getNombreTitular());
             stmt.setDate(5, java.sql.Date.valueOf(medioPago.getFechaVencimiento().toLocalDate()));
             stmt.setString(6, medioPago.getCvv());
@@ -45,7 +45,7 @@ public class MedioPagoDAO extends PolizasDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     String id = rs.getString("id_cliente");
-                    int numeroTarjeta = rs.getInt("numero_tarjeta");
+                    String numeroTarjeta = rs.getString("numero_tarjeta");
                     String nombreTitular = rs.getString("nombre_titular");
                     LocalDateTime fechaVencimiento = rs.getTimestamp("fecha_vencimiento").toLocalDateTime();
                     String cvv = rs.getString("cvv");
@@ -67,7 +67,7 @@ public class MedioPagoDAO extends PolizasDAO {
             stmt.clearParameters();
             stmt.setInt(1, medioPago.getId());
             stmt.setString(2, medioPago.getIdCliente());
-            stmt.setInt(3, medioPago.getNumeroTarjeta());
+            stmt.setString(3, medioPago.getNumeroTarjeta());
             stmt.setString(4, medioPago.getNombreTitular());
             stmt.setDate(5, java.sql.Date.valueOf(medioPago.getFechaVencimiento().toLocalDate()));
             stmt.setString(6, medioPago.getCvv());
@@ -104,7 +104,7 @@ public class MedioPagoDAO extends PolizasDAO {
                 listadoMedioPago = new ArrayList<MedioPago>();
                 while (rs.next()) {
                     int id = rs.getInt("id");
-                    int numeroTarjeta = rs.getInt("numero_tarjeta");
+                    String numeroTarjeta = rs.getString("numero_tarjeta");
                     String nombreTitular = rs.getString("nombre_titular");
                     LocalDateTime fechaVencimiento = rs.getTimestamp("fecha_vencimiento").toLocalDateTime();
                     String cvv = rs.getString("cvv");

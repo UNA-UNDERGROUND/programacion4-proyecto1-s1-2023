@@ -32,7 +32,7 @@ public class GestorRegistro extends HttpServlet {
                 String apellido = request.getParameter("txtApellido");
                 String telefono = request.getParameter("txtNumero");
                 
-                int numeroTarjeta = Integer.parseInt(request.getParameter("txtNumeroTarjeta"));
+                String numeroTarjeta = request.getParameter("txtNumeroTarjeta");
                 String propietario = request.getParameter("txtPropietario");
                 String fechaVencimiento = request.getParameter("txtFecha");
                 String cvv = request.getParameter("txtCvv");
