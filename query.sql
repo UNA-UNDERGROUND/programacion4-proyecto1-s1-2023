@@ -123,6 +123,13 @@ alter table cobertura
 
 
 -- unique
+-- el medio de pago es unico por cliente, tarjeta, 
+-- ya que una tarjeta puede ternerla mas de un cliente
+-- pero el cliente no puede tenerla duplicada
+alter table medio_pago
+    add constraint uk_medio_pago
+        unique (id_cliente, numero_tarjeta);
+
 alter table categoria_vehiculo
     add constraint uk_categoria_vehiculo
         unique (marca, modelo, serie);
