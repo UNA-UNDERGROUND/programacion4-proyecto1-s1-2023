@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 
-@WebServlet(name = "GestorLogin", urlPatterns = { "/GestorLogin", "login" })
+@WebServlet(name = "GestorLogin", urlPatterns = { "/GestorLogin", "/login" })
 public class GestorLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request,
             HttpServletResponse response)
@@ -30,8 +30,7 @@ public class GestorLogin extends HttpServlet {
                 request.getSession().setAttribute("cliente", cliente);
                 response.sendRedirect(request.getContextPath() + "/principalClient.jsp");
             }
-        }
-        else{
+        } else {
             PrintWriter out = response.getWriter();
             response.setContentType("text/html");
             out.println("<script type='text/javascript'>");
@@ -45,19 +44,17 @@ public class GestorLogin extends HttpServlet {
     private Credenciales validarCredenciales(HttpServletRequest request) {
         // verificamos que sea GET
         Credenciales credenciales = null;
-        if (request.getMethod().equals("GET")) {
-            Map<String, String[]> parametros = request.getParameterMap();
-            if (parametros.containsKey("username") && parametros.containsKey("password")) {
-                String username = request.getParameter("username");
-                String password = request.getParameter("password");
-                credenciales = new Credenciales(username, password);
-            }
+        Map<String, String[]> parametros = request.getParameterMap();
+        if (parametros.containsKey("username") && parametros.containsKey("password")) {
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            credenciales = new Credenciales(username, password);
         }
         return credenciales;
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
     }
 }

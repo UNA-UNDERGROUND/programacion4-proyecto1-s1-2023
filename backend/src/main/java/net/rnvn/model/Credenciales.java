@@ -4,6 +4,10 @@ public class Credenciales {
     private String identificacion;
     private String password;
 
+    public Credenciales() {
+
+    }
+
     public Credenciales(String identificacion, String password) {
         this.identificacion = identificacion;
         this.password = password;

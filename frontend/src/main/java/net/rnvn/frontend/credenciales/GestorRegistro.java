@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 import java.util.Map;
 import java.time.format.DateTimeFormatter;
 
-@WebServlet(name = "GestorRegistro", urlPatterns = { "/GestorRegistro", "register" })
+@WebServlet(name = "GestorRegistro", urlPatterns = { "/GestorRegistro", "/register" })
 public class GestorRegistro extends HttpServlet {
     protected void processRequest(HttpServletRequest request,
             HttpServletResponse response)
