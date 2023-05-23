@@ -34,3 +34,25 @@ GRANT EXECUTE ON `polizas`.* TO 'admin'@'%';
 GRANT SELECT ON mysql.proc TO 'admin'@'%';
 FLUSH PRIVILEGES;
 ```
+
+## generar certificados para claves JWT
+
+para el uso de tokens JWT se requieren certificados, puede generar los suyos si así lo desea, las configuraciones de ruta se ubican en el siguiente archivo.
+
+```
+/frontend/src/main/resources/configuraciones/jwt.properties
+
+📦frontend
+ ┣ 📂src
+ ┃ ┣ 📂main
+ ┃ ┃ ┣ 📂java
+ ┃ ┃ ┗ 📂resources
+ ┃ ┃ ┃ ┗ 📂configuraciones
+ ┃ ┃ ┃ ┃ ┗ 📜jwt.properties
+ ┣ 📜.gitignore
+ ┗ 📜pom.xml
+```
+
+posteriormente modifique el archivo `jwt.properties` para que apunte a los certificados generados
+
+De lo contrario la aplicación se encargará de generar las claves por si solo

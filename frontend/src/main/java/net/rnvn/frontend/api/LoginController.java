@@ -24,22 +24,26 @@ public class LoginController extends HttpServlet {
         try (BufferedReader reader = request.getReader()) {
             CredencialesController controller = CredencialesController.getInstance();
             Credenciales credenciales = new Gson().fromJson(reader, Credenciales.class);
-            if (controller.login(credenciales)) {
-                JWTController jwtController = JWTController.getInstance();
-                Map<String, String> claims = new HashMap<>();
-                // set the user id as the subject
-                claims.put("sub", credenciales.getIdentificacion());
-                String token = jwtController.getJWTToken(claims);
-                response.setStatus(HttpServletResponse.SC_OK);
-                // send the token in the response body
-                response.getWriter().write(token);
-            } else {
-                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            if (null != credenciales) {
+                if (controller.login(credenciales)) {
+                    JWTController jwtController = JWTController.getInstance();
+                    Map<String, String> claims = new HashMap<>();
+                    // set the user id as the subject
+                    claims.put("sub", credenciales.getIdentificacion());
+                    String token = jwtController.getJWTToken(claims);
+                    response.setStatus(HttpServletResponse.SC_OK);
+                    // send the token in the response body
+                    response.getWriter().write(token);
+                    return;
+                }
             }
+
         } catch (Exception e) {
             System.err.println(this.getClass().getName() + ": " + e.getMessage());
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            return;
         }
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
     }
 
     @Override
