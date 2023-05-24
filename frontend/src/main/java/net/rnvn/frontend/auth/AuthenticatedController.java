@@ -110,6 +110,10 @@ public class AuthenticatedController extends HttpServlet {
         try {
             // get the token from the request header
             String token = req.getHeader("Authorization");
+            // remove the header prefix
+            if (null != token && token.startsWith("Bearer ")) {
+                token = token.substring(7);
+            }
             // check if the token is valid
             DecodedJWT decodedJWT = getDecodedJWT(token);
             if (null != decodedJWT) {

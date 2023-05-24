@@ -33,7 +33,11 @@ public class LoginController extends HttpServlet {
                     String token = jwtController.getJWTToken(claims);
                     response.setStatus(HttpServletResponse.SC_OK);
                     // send the token in the response body
-                    response.getWriter().write(token);
+                    HashMap<String, String> map = new HashMap<>();
+                    map.put("token", token);
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+                    response.getWriter().write(new Gson().toJson(map));
                     return;
                 }
             }

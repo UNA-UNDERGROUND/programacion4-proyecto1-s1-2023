@@ -13,7 +13,9 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.time.Instant;
 import java.util.Base64;
+import java.util.Calendar;
 import java.util.Map;
 import java.util.Properties;
 
@@ -37,6 +39,8 @@ public class JWTController {
             properties.load(getClass().getResourceAsStream(PROPERTIES_PATH));
             String publicKeyPath = properties.getProperty("RSAKeyPublicPath");
             String privateKeyPath = properties.getProperty("RSAPrivateKeyPath");
+            expirationTime = properties.getProperty("expirationTime") == null ? 3600
+                    : Integer.parseInt(properties.getProperty("expirationTime"));
             // check if the files exist
             if (!Files.exists(Paths.get(publicKeyPath)) || !Files.exists(Paths.get(privateKeyPath))) {
                 // generate the certificates
@@ -76,9 +80,9 @@ public class JWTController {
             builder.withClaim(key, value);
         });
         // get the current timestamp in seconds
-        long now = System.currentTimeMillis() / 1000L;
-        builder.withIssuedAt(new java.util.Date(now));
-        builder.withExpiresAt(new java.util.Date(now + ExpirationTime));
+        Instant now = Instant.now();
+        builder.withIssuedAt(now);
+        builder.withExpiresAt(now.plusSeconds(expirationTime));
 
         return builder.sign(algorithm);
     }
@@ -93,7 +97,7 @@ public class JWTController {
 
     private String Issuer = "UNA-P4";
     // expiration time in seconds
-    private int ExpirationTime;
+    private int expirationTime;
 
     private static String PROPERTIES_PATH = "/configuraciones/jwt.properties";
 
