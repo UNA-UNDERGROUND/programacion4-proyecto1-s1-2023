@@ -1,9 +1,9 @@
-package net.rnvn.frontend.api;
+package net.rnvn.webapi.api;
 
 import com.google.gson.Gson;
 
 import jakarta.servlet.annotation.WebServlet;
-import net.rnvn.frontend.auth.AuthenticatedController;
+import net.rnvn.webapi.auth.AuthenticatedController;
 
 @WebServlet(name = "SumaController", urlPatterns = { "/api/sumar" })
 public class ExampleServlet extends AuthenticatedController {

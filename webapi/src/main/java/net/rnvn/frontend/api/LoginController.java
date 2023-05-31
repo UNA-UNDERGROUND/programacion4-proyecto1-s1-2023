@@ -1,4 +1,4 @@
-package net.rnvn.frontend.api;
+package net.rnvn.webapi.api;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import net.rnvn.controller.CredencialesController;
-import net.rnvn.frontend.auth.JWTController;
+import net.rnvn.webapi.auth.JWTController;
 import net.rnvn.model.Credenciales;
 
 @WebServlet(name = "LoginController", urlPatterns = { "/api/login" })

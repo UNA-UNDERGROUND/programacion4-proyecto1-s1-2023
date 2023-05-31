@@ -40,9 +40,9 @@ FLUSH PRIVILEGES;
 para el uso de tokens JWT se requieren certificados, puede generar los suyos si así lo desea, las configuraciones de ruta se ubican en el siguiente archivo.
 
 ```
-/frontend/src/main/resources/configuraciones/jwt.properties
+/webapi/src/main/resources/configuraciones/jwt.properties
 
-📦frontend
+📦webapi
  ┣ 📂src
  ┃ ┣ 📂main
  ┃ ┃ ┣ 📂java

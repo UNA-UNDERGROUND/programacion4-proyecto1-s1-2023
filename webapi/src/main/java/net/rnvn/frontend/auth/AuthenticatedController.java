@@ -1,4 +1,4 @@
-package net.rnvn.frontend.auth;
+package net.rnvn.webapi.auth;
 
 import java.io.IOException;
 import com.auth0.jwt.interfaces.DecodedJWT;
