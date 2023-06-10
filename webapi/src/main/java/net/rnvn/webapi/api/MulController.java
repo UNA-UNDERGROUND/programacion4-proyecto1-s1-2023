@@ -1,6 +1,7 @@
 package net.rnvn.webapi.api;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -29,7 +30,7 @@ public class MulController extends RestController {
     protected void onPost(
             HttpServletRequest req,
             HttpServletResponse resp,
-            com.google.gson.JsonObject jsonObject)
+            JsonObject jsonObject)
             throws ServletException, java.io.IOException {
         Numeros numeros = new Gson().fromJson(jsonObject, Numeros.class);
         if (null != numeros) {

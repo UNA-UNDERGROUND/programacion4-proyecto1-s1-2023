@@ -51,9 +51,9 @@ public class RestController extends HttpServlet {
 
     @Override
     protected void doGet(
-            jakarta.servlet.http.HttpServletRequest req,
-            jakarta.servlet.http.HttpServletResponse resp)
-            throws jakarta.servlet.ServletException, java.io.IOException {
+            HttpServletRequest req,
+            HttpServletResponse resp)
+            throws ServletException, IOException {
         parseRequest(req, resp, (request, response, jsonObject) -> {
             try {
                 onGet(request, response, jsonObject);
@@ -113,7 +113,7 @@ public class RestController extends HttpServlet {
             HttpServletResponse resp,
             // callback(request, response, jsonObject)
             HTTPCallback callback)
-            throws jakarta.servlet.ServletException, java.io.IOException {
+            throws ServletException, IOException {
 
         resp.setCharacterEncoding("UTF-8");
         // verificamos si el request contiene un body

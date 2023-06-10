@@ -2,20 +2,22 @@ package net.rnvn.webapi.auth;
 
 import java.io.IOException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.google.gson.JsonObject;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import net.rnvn.webapi.util.RestController;
 
 // Esta clase esta pensada para que que todo controlador que requiere autenticacion herede de ella
-public class AuthenticatedController extends HttpServlet {
+public class AuthenticatedController extends RestController {
 
     // abstract methods [onGet, onPost]
 
     protected void onGet(
             HttpServletRequest req,
             HttpServletResponse resp,
+            JsonObject jsonObject,
             DecodedJWT decodedJWT)
             throws ServletException, IOException {
         resp.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
@@ -24,6 +26,7 @@ public class AuthenticatedController extends HttpServlet {
     protected void onPost(
             HttpServletRequest req,
             HttpServletResponse resp,
+            JsonObject jsonObject,
             DecodedJWT decodedJWT)
             throws ServletException, IOException {
         resp.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
@@ -32,6 +35,7 @@ public class AuthenticatedController extends HttpServlet {
     protected void onPut(
             HttpServletRequest req,
             HttpServletResponse resp,
+            JsonObject jsonObject,
             DecodedJWT decodedJWT)
             throws ServletException, IOException {
         resp.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
@@ -40,33 +44,22 @@ public class AuthenticatedController extends HttpServlet {
     protected void onDelete(
             HttpServletRequest req,
             HttpServletResponse resp,
+            JsonObject jsonObject,
             DecodedJWT decodedJWT)
             throws ServletException, IOException {
         resp.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
     }
 
+    // override rest controller methods
     @Override
-    protected void doGet(
-            jakarta.servlet.http.HttpServletRequest req,
-            jakarta.servlet.http.HttpServletResponse resp)
-            throws jakarta.servlet.ServletException, java.io.IOException {
-        handleAuthentication(req, resp, (request, response, decodedJWT) -> {
-            try {
-                onGet(request, response, decodedJWT);
-            } catch (Exception e) {
-                System.err.println(this.getClass().getName() + ": " + e.getMessage());
-            }
-        });
-    }
-
-    @Override
-    protected void doPost(
+    protected void onGet(
             HttpServletRequest req,
-            HttpServletResponse resp)
+            HttpServletResponse resp,
+            JsonObject json)
             throws ServletException, IOException {
-        handleAuthentication(req, resp, (request, response, decodedJWT) -> {
+        handleAuthentication(req, resp, json, (request, response, jsonObject, decodedJWT) -> {
             try {
-                onPost(request, response, decodedJWT);
+                onGet(request, response, jsonObject, decodedJWT);
             } catch (Exception e) {
                 System.err.println(this.getClass().getName() + ": " + e.getMessage());
             }
@@ -74,13 +67,14 @@ public class AuthenticatedController extends HttpServlet {
     }
 
     @Override
-    protected void doPut(
+    protected void onPost(
             HttpServletRequest req,
-            HttpServletResponse resp)
+            HttpServletResponse resp,
+            JsonObject json)
             throws ServletException, IOException {
-        handleAuthentication(req, resp, (request, response, decodedJWT) -> {
+        handleAuthentication(req, resp, json, (request, response, jsonObject, decodedJWT) -> {
             try {
-                onPut(request, response, decodedJWT);
+                onPost(req, resp, json, decodedJWT);
             } catch (Exception e) {
                 System.err.println(this.getClass().getName() + ": " + e.getMessage());
             }
@@ -88,12 +82,29 @@ public class AuthenticatedController extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(
+    protected void onPut(
             HttpServletRequest req,
-            HttpServletResponse resp) throws ServletException, IOException {
-        handleAuthentication(req, resp, (request, response, decodedJWT) -> {
+            HttpServletResponse resp,
+            JsonObject json)
+            throws ServletException, IOException {
+        handleAuthentication(req, resp, json, (request, response, jsonObject, decodedJWT) -> {
             try {
-                onDelete(request, response, decodedJWT);
+                onPut(req, resp, json, decodedJWT);
+            } catch (Exception e) {
+                System.err.println(this.getClass().getName() + ": " + e.getMessage());
+            }
+        });
+    }
+
+    @Override
+    protected void onDelete(
+            HttpServletRequest req,
+            HttpServletResponse resp,
+            JsonObject json)
+            throws ServletException, IOException {
+        handleAuthentication(req, resp, json, (request, response, jsonObject, decodedJWT) -> {
+            try {
+                onDelete(req, resp, json, decodedJWT);
             } catch (Exception e) {
                 System.err.println(this.getClass().getName() + ": " + e.getMessage());
             }
@@ -103,7 +114,8 @@ public class AuthenticatedController extends HttpServlet {
     private void handleAuthentication(
             HttpServletRequest req,
             HttpServletResponse resp,
-            // callback(request, response, decodedJWT)
+            JsonObject jsonObject,
+            // callback(request, response, jsonObject, decodedJWT)
             HTTPCallback callback)
             throws jakarta.servlet.ServletException, java.io.IOException {
 
@@ -118,7 +130,7 @@ public class AuthenticatedController extends HttpServlet {
             DecodedJWT decodedJWT = getDecodedJWT(token);
             if (null != decodedJWT) {
                 // 200 OK
-                callback.onVerified(req, resp, decodedJWT);
+                callback.onVerified(req, resp, jsonObject, decodedJWT);
                 return;
             }
         } catch (Exception e) {
@@ -139,7 +151,7 @@ public class AuthenticatedController extends HttpServlet {
 
     @FunctionalInterface
     public interface HTTPCallback {
-        public void onVerified(HttpServletRequest t, HttpServletResponse u, DecodedJWT v);
+        public void onVerified(HttpServletRequest t, HttpServletResponse u, JsonObject o, DecodedJWT v);
     }
 
 }

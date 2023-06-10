@@ -1,8 +1,12 @@
 package net.rnvn.webapi.api;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
 import net.rnvn.webapi.auth.AuthenticatedController;
 
 @WebServlet(name = "SumaController", urlPatterns = { "/api/sumar" })
@@ -17,33 +21,26 @@ public class ExampleServlet extends AuthenticatedController {
     private class Respuesta {
         public int suma;
         public String identificacion;
+
+        Respuesta(int numeroA, int numeroB, String identificacion) {
+            this.suma = numeroA + numeroB;
+            this.identificacion = identificacion;
+        }
     }
 
     @Override
     protected void onPost(
-            jakarta.servlet.http.HttpServletRequest req,
-            jakarta.servlet.http.HttpServletResponse resp,
-            com.auth0.jwt.interfaces.DecodedJWT decodedJWT)
+            HttpServletRequest req,
+            HttpServletResponse resp,
+            JsonObject jsonObject,
+            DecodedJWT decodedJWT)
             throws jakarta.servlet.ServletException, java.io.IOException {
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
-        try (
-                java.io.BufferedReader reader = req.getReader();) {
-            // numeroA, numeroB
-            // { "numeroA": 1, "numeroB": 2 }
-
-            Gson gson = new Gson();
-            Numeros numeros = gson.fromJson(reader, Numeros.class);
-            if (null != numeros) {
-                Respuesta respuesta = new Respuesta();
-                respuesta.suma = numeros.numeroA + numeros.numeroB;
-                respuesta.identificacion = decodedJWT.getSubject();
-                resp.setStatus(jakarta.servlet.http.HttpServletResponse.SC_OK);
-                resp.getWriter().write(gson.toJson(respuesta));
-            } else {
-                resp.setStatus(jakarta.servlet.http.HttpServletResponse.SC_BAD_REQUEST);
-                resp.getWriter().write("{}");
-            }
+        Numeros numeros = new Gson().fromJson(jsonObject, Numeros.class);
+        if (null != numeros) {
+            Respuesta respuesta = new Respuesta(numeros.numeroA, numeros.numeroB, decodedJWT.getSubject());
+            writeResponse(resp, respuesta);
+        } else {
+            writeResponse(resp, HttpServletResponse.SC_BAD_REQUEST);
         }
 
     }
