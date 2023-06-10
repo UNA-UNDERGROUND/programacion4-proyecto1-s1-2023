@@ -13,6 +13,7 @@ public class ExampleServlet extends AuthenticatedController {
         public int numeroB;
     }
 
+    @SuppressWarnings("unused")
     private class Respuesta {
         public int suma;
         public String identificacion;
